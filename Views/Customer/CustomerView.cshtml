@@ -1,0 +1,63 @@
+﻿@model IEnumerable<BiggerBasket.Models.Product>
+
+@{
+    ViewData["Title"] = "CustomerView";
+    Layout = "CartLayout";
+}
+
+<h1>Customer view</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+    <h4>@ViewBag.CustomerEmail</h4>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+        
+            <
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductImage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+            </td>
+          
+            <td>
+                <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
+                <a asp-action="AddtoCart" asp-route-id="@item.ProductId">Add to cart</a>|
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

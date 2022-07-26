@@ -1,0 +1,42 @@
+﻿@model BiggerBasket.Models.Merchant
+
+@{
+    ViewData["Title"] = "MerchantLogin";
+    Layout = "MerchantLayout";
+}
+
+<h1>MerchantLogin</h1>
+
+<h4>Merchant </h4>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="MerchantLogin">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MerchantEmail" class="control-label"></label>
+                <input asp-for="MerchantEmail" class="form-control" />
+                <span asp-validation-for="MerchantEmail" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="MerchantPassword" class="control-label"></label>
+                <input asp-for="MerchantPassword" class="form-control" />
+                <span asp-validation-for="MerchantPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
