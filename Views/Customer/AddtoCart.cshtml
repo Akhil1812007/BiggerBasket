@@ -4,7 +4,7 @@
     ViewData["Title"] = "AddtoCart";
 }
 
-<h1>AddtoCart</h1>
+<h1>Add to Cart</h1>
 
 <h4>Cart</h4>
 <hr />
@@ -18,20 +18,20 @@
             </div>
             
             <div class="form-group">
-                <label asp-for="ProductQuantity" class="control-label"></label>
+                <label asp-for="ProductQuantity" class="control-label">Product Quantity</label>
                 <input asp-for="ProductQuantity" class="form-control" />
                 <span asp-validation-for="ProductQuantity" class="text-danger"></span>
             </div>
            
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Add" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="CustomerView">Back to List</a>
 </div>
 
 @section Scripts {

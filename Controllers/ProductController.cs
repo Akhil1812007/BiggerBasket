@@ -29,7 +29,8 @@ namespace BiggerBasket.Controllers
         [HttpPost]
         public IActionResult AddProduct(Product p)
         {
-
+            var MerchantId = HttpContext.Session.GetInt32("MerchantId");
+            p.MerchantId =(int) MerchantId;
 
             db.Products.Add(p);
             db.SaveChanges();
@@ -39,7 +40,8 @@ namespace BiggerBasket.Controllers
         public IActionResult MerchantView()
         {
             var ans1= HttpContext.Session.GetInt32("MerchantId");
-            ViewBag.ans = HttpContext.Session.GetInt32("MerchantId");
+            var MerchantEmail = (from i in db.Merchants where i.MerchantId == ans1 select i).SingleOrDefault();
+            ViewBag.ans = HttpContext.Session.GetString("MerchantEmail");
 
 
             var result = (from i in db.Products.Include(x => x.Category)

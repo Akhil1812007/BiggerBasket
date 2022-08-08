@@ -5,9 +5,9 @@
     Layout = "MerchantLayout";
 }
 
-<h1>MerchantLogin</h1>
+<h1>Merchant Login</h1>
 
-<h4>Merchant </h4>
+
 
 <hr />
 <div class="row">
@@ -15,27 +15,25 @@
         <form asp-action="MerchantLogin">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="MerchantEmail" class="control-label"></label>
+                <label asp-for="MerchantEmail" class="control-label">Merchant Email</label>
                 <input asp-for="MerchantEmail" class="form-control" />
                 <span asp-validation-for="MerchantEmail" class="text-danger"></span>
             </div>
            
             <div class="form-group">
-                <label asp-for="MerchantPassword" class="control-label"></label>
-                <input asp-for="MerchantPassword" class="form-control" />
+                <label asp-for="MerchantPassword" class="control-label">Merchant Password</label>
+                <input type="password" asp-for="MerchantPassword" class="form-control" />
                 <span asp-validation-for="MerchantPassword" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Login" class="btn btn-primary" />
             </div>
         </form>
     </div>
     
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

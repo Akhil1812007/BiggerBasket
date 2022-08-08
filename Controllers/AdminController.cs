@@ -60,5 +60,18 @@ namespace BiggerBasket.Controllers
         {
             return View(db.Categories.ToList());
         }
+        public IActionResult Delete(int? id)
+        {
+            Category p = db.Categories.Find(id);
+            return View(p);
+
+        }
+        [HttpPost]
+        public IActionResult Delete(Category c)
+        {
+            db.Categories.Remove(c);
+            db.SaveChanges();
+            return RedirectToAction("AdminView");
+        }
     }
 }

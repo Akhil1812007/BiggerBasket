@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -19,10 +20,7 @@ namespace BiggerBasket.Models
         public int OrderMasterId { get; set; }
         public virtual Product Product { get; set; }
         public virtual OrderMaster OrderMaster { get; set; }
-
-
-        //OrderMAsterId
-
+       
 
     }
 }

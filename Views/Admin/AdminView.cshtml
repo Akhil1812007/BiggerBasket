@@ -2,9 +2,10 @@
 
 @{
     ViewData["Title"] = "AdminView";
+    Layout = "Admin";
 }
 
-<h1>AdminView</h1>
+<h1>Admin View</h1>
 
 <p>
     <a asp-action="Category">New Category</a>
@@ -13,7 +14,8 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CategoryName)
+                @*@Html.DisplayNameFor(model => model.CategoryName) *@
+                Category Name
             </th>
             <th></th>
         </tr>

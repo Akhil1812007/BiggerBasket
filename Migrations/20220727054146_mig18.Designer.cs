@@ -4,14 +4,16 @@ using BiggerBasket.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BiggerBasket.Migrations
 {
     [DbContext(typeof(BiggerBasketContext))]
-    partial class BiggerBasketContextModelSnapshot : ModelSnapshot
+    [Migration("20220727054146_mig18")]
+    partial class mig18
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -185,9 +187,6 @@ namespace BiggerBasket.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("OrderMasterId")
-                        .HasColumnType("int");
-
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
@@ -198,8 +197,6 @@ namespace BiggerBasket.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("OrderDetailId");
-
-                    b.HasIndex("OrderMasterId");
 
                     b.HasIndex("ProductId");
 
@@ -225,12 +222,17 @@ namespace BiggerBasket.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("OrderDetailId")
+                        .HasColumnType("int");
+
                     b.Property<int>("total")
                         .HasColumnType("int");
 
                     b.HasKey("OrderMasterId");
 
                     b.HasIndex("CustomerId");
+
+                    b.HasIndex("OrderDetailId");
 
                     b.ToTable("OrderMasters");
                 });
@@ -308,19 +310,11 @@ namespace BiggerBasket.Migrations
 
             modelBuilder.Entity("BiggerBasket.Models.OrderDetail", b =>
                 {
-                    b.HasOne("BiggerBasket.Models.OrderMaster", "OrderMaster")
-                        .WithMany("OrderDetails")
-                        .HasForeignKey("OrderMasterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("BiggerBasket.Models.Product", "Product")
                         .WithMany("OrderDetails")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("OrderMaster");
 
                     b.Navigation("Product");
                 });
@@ -333,7 +327,15 @@ namespace BiggerBasket.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("BiggerBasket.Models.OrderDetail", "OrderDetail")
+                        .WithMany("OrderMasters")
+                        .HasForeignKey("OrderDetailId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Customer");
+
+                    b.Navigation("OrderDetail");
                 });
 
             modelBuilder.Entity("BiggerBasket.Models.Product", b =>
@@ -369,9 +371,9 @@ namespace BiggerBasket.Migrations
                     b.Navigation("OrderMasters");
                 });
 
-            modelBuilder.Entity("BiggerBasket.Models.OrderMaster", b =>
+            modelBuilder.Entity("BiggerBasket.Models.OrderDetail", b =>
                 {
-                    b.Navigation("OrderDetails");
+                    b.Navigation("OrderMasters");
                 });
 
             modelBuilder.Entity("BiggerBasket.Models.Product", b =>

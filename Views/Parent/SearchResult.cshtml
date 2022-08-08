@@ -1,24 +1,21 @@
 ﻿@model IEnumerable<BiggerBasket.Models.Product>
 
 @{
-    ViewData["Title"] = "MerchantView";
-    Layout = "MerchantLayout";
+    ViewData["Title"] = "CustomerView";
+    
 }
 
-<h4>Hi @ViewBag.ans!</h4>
+<h1>Search Result</h1>
 
-<p>
-    <a asp-action="AddProduct">Add New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
+           
             <th>
-               @* @Html.DisplayNameFor(model => model.ProductName)*@
-               Product Name
+                Product Name
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.UnitPrice)*@
                 Unit Price
             </th>
             <th>
@@ -27,13 +24,14 @@
             <th>
                 @Html.DisplayNameFor(model => model.Category)
             </th>
-           
-            <th></th>
+        
+            
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            
             <td>
                 @Html.DisplayFor(modelItem => item.ProductName)
             </td>
@@ -41,18 +39,17 @@
                 @Html.DisplayFor(modelItem => item.UnitPrice)
             </td>
             <td>
-                <img src="~/css/@item.ProductImage" alt="no data" height="100" width="100"/>
+               <img src="~/css/@item.ProductImage" alt="no data" height="100" width="100"/>
+
+
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Category.CategoryName)
             </td>
           
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
-@*                <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
-*@                <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
-            </td>
+            
         </tr>
 }
     </tbody>
 </table>
+

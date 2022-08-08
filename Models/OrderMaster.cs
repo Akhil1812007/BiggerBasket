@@ -22,6 +22,7 @@ namespace BiggerBasket.Models
         public int CustomerId { get; set; }
         
         public virtual Customer Customer { get; set; }
+        //public virtual OrderDetail OrderDetail { get; set; }
         public ICollection<OrderDetail> OrderDetails { get; set; }
 
 

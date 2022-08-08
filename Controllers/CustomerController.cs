@@ -64,6 +64,15 @@ namespace BiggerBasket.Controllers
             return View(db.Products.ToList());
         }
         [HttpGet]
+        public IActionResult Details(int id)
+        {
+
+
+            Product p = db.Products.Find(id); 
+            return View(p);
+
+        }
+        [HttpGet]
         public IActionResult AddtoCart(int id)
         {
             HttpContext.Session.SetInt32("PId",id);
@@ -90,22 +99,27 @@ namespace BiggerBasket.Controllers
         {
             var CustomerId = HttpContext.Session.GetInt32("CustomerId");
             var result = (from i in db.carts.Include(x => x.Customer).Include(y => y.Product)where i.CustomerId == CustomerId select i).ToList();
+            
 
-            //using (var context = new BloggingContext())
-            //{
-            //    var blogs = context.Blogs
-            //        .Include(blog => blog.Posts)
-            //        .Include(blog => blog.Owner)
-            //        .ToList();
-            //}
-            //using (var context = new BiggerBasketContext())
-            //{
-            //    var result = (from i in context.carts.Include(x => x.Customer.CustomerName).Include(y => y.Product.ProductName) where i.CustomerId == CustomerId select i).ToList();
-
-            //    return View(result.ToList());
-            //}
             return View(result.ToList());
 
+        }
+        public  IActionResult Delete(int? id)
+        {
+            Cart p = db.carts.Find(id);
+            return View(p);
+  
+        }
+        [HttpPost]
+        public IActionResult Delete(Cart c)
+        {
+            db.carts.Remove(c);
+            db.SaveChanges();
+            return RedirectToAction("Cartview");
+        }
+        public IActionResult Logout()
+        {
+            return RedirectToAction("RoleSelection", "Parent");
         }
         
 
